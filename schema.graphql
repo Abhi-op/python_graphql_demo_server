@@ -1,0 +1,33 @@
+type User {
+    id: Int
+    first_name:String
+    last_name:String
+    bio:String
+}
+
+type CsvFile {
+    id: Int
+    user_id:Int
+    csv_url: String
+    error :String
+}
+type CreateResponse{
+    success:Boolean!
+    message:String
+}
+type DeleteResponse{
+     success:Boolean
+     message:String
+}
+
+type Query {
+    getAllUsers: [User]   
+    getUserById(userId: Int!): User  
+    getAllCsvFiles(userId:Int!): [CsvFile]
+}
+
+type Mutation{
+    createUser(first_name:String!,last_name:String!,year_of_birth:Int,profile_pic_url:String,gender_id:Int,languages:String,bio:String):CreateResponse
+    uploadCsvFile(userId:Int,csv_file_url:String):CreateResponse
+    DeleteCsvFileUrl(fileId:Int!):DeleteResponse
+}
